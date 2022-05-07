@@ -1,13 +1,4 @@
-/*
-  This Pen is based on an L-system and Turtle graphics. Read more about L-systems:
-  https://codepen.io/DonKarlssonSan/blog/i-love-fractals
-  
-  Here is the recursive version:
-  https://codepen.io/DonKarlssonSan/pen/qdVWgG
-  
-  The Hilbert Curve: https://en.wikipedia.org/wiki/Hilbert_curve
- 
-*/
+
 
 (function () {
     // I've tried to scale the size of each step
@@ -27,35 +18,26 @@
     var min = Math.min(canvas.width, canvas.height);
     var ctx = canvas.getContext("2d");
     
-    // Try changing this!
+    // Зміна ітерацій
     var iterations = 6;
     
     var x,y;
     var angle = 0;
     
-    //
-    // L-system
-    //
-    // Alphabet : A, B
-    // Constants : F + −
-    // Axiom : A
-    // Production rules:
-    // A → − B F + A F A + F B −
-    // B → + A F − B F B − F A +
-    // Here, "F" means "draw forward", 
-    //       "−" means "turn left 90°", 
-    //       "+" means "turn right 90°" and 
-    //       "A" and "B" are ignored during drawing.
+   
+    //  F означає малюйте вперед
+    //  - означає повернути вліво на 90°
+    //  + означає повернути вправо на 90°
+    //   А і В ігноруються
     
     // Axiom
     var result = "A";
     
     var rules = {
-      A: "-BF+AFA+FB-", // Rule 1
-      B: "+AF-BFB-FA+"  // Rule 2
+      A: "-BF+AFA+FB-", // правило 1
+      B: "+AF-BFB-FA+"  // правило 2
     };
     
-    // Production
     for(var i = 0; i < iterations; ++i) {
       result = replaceAll(result, rules);
     }
@@ -76,7 +58,6 @@
     
     
     
-    //for(var index = 0; index < result.length; ++index) {
     var index = 0;
     function draw() {
       if(index === result.length) {
